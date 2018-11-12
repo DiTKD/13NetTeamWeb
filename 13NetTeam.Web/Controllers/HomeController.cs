@@ -1,0 +1,54 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using _13NetTeam.Web.Models;
+using _13NetTeam.Core.Contexts;
+using Microsoft.EntityFrameworkCore;
+
+namespace _13NetTeam.Web.Controllers
+{
+    public class HomeController : Controller
+    {
+        private readonly Context _context;
+
+        public HomeController(Context context)
+        {
+            _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            ViewBag.Perguntas = await _context.Perguntas.Include(p => p.Respostas).ToListAsync();
+
+            return View();
+        }
+
+        public IActionResult About()
+        {
+            ViewData["Message"] = "Your application description page.";
+
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            ViewData["Message"] = "Your contact page.";
+
+            return View();
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+    }
+}
