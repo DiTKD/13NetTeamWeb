@@ -43,7 +43,7 @@ namespace _13NetTeam.Api.Controllers
 
         // POST: api/Resposta
         [HttpPost]
-        public async Task<IActionResult> PostPergunta([FromBody] int id_pergunta, Resposta resposta)
+        public async Task<IActionResult> PostResposta(int id_pergunta, [FromBody]  Resposta resposta)
         {
             if (!ModelState.IsValid)
             {

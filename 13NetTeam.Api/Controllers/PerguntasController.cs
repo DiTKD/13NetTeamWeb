@@ -27,7 +27,8 @@ namespace _13NetTeam.Api.Controllers
         [HttpGet]
         public IEnumerable<Pergunta> GetPerguntas()
         {
-            return _context.Perguntas;
+            var perguntas = _context.Perguntas.ToList();
+            return perguntas;
         }
 
         // GET: api/Perguntas/5
